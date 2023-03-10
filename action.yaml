@@ -1,6 +1,6 @@
 name: defectdojo findings threshold
 
-description: A GitHub Action that evaluates the active findings against thresholds set for the total number of finding and each criticality
+description: A GitHub Action that evaluates the active findings against thresholds set by the user
 
 inputs:
   defectdojo-url:
