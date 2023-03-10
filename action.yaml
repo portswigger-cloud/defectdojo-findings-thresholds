@@ -49,7 +49,7 @@ inputs:
 
 runs:
   using: docker
-  image: docker://ghcr.io/portswigger-cloud/defectdojo-utils:latest
+  image: docker://ghcr.io/portswigger-cloud/defectdojo-utils:main
   entrypoint: /usr/defectdojo-utils/src/findings_thresholds.py
   env:
     DEFECT_DOJO_URL: ${{ inputs.defectdojo-url }}
