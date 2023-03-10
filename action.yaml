@@ -1,0 +1,70 @@
+name: defectdojo findings threshold
+
+description: A GitHub Action that evaluates the active findings against thresholds set for the total number of finding and each criticality
+
+inputs:
+  defectdojo-url:
+    description: the url of your defectdojo instance
+    required: true
+  defectdojo-username:
+    description: the username to login into your defectdojo instance
+    required: true
+  defectdojo-password:
+    description: the password to login into your defectdojo instance
+    required: true
+  defectdojo-product:
+    description: the defectdojo product that the scan result relates to
+    required: true
+  client-certificate-file-path:
+    description: the file path for a client side certificate if required
+    required: false
+  client-key-file-path:
+    description: the file path for a client side private key if required
+    required: false
+  total-threshold:
+    required: false
+    default: "false"
+    description: total findings threshold
+  critical-threshold:
+    required: false
+    default: "false"
+    description: critical findings threshold
+  high-threshold:
+    required: false
+    default: "false"
+    description: high findings threshold
+  medium-threshold:
+    required: false
+    default: "false"
+    description: medium findings threshold
+  low-threshold:
+    required: false
+    default: "false"
+    description: low findings threshold
+  info-threshold:
+    required: false
+    default: "false"
+    description: info findings threshold
+
+
+runs:
+  using: docker
+  image: docker://ghcr.io/portswigger-cloud/defectdojo-utils:latest
+  entrypoint: /usr/defectdojo-utils/src/findings_thresholds.py
+  env:
+    DEFECT_DOJO_URL: ${{ inputs.defectdojo-url }}
+    DEFECT_DOJO_USERNAME: ${{ inputs.defectdojo-username }}
+    DEFECT_DOJO_PASSWORD: ${{ inputs.defectdojo-password }}
+    DEFECT_DOJO_PRODUCT: ${{ inputs.defectdojo-product }}
+    CLIENT_CERTIFICATE_FILE_PATH: ${{ inputs.client-certificate-file-path }}
+    CLIENT_KEY_FILE_PATH: ${{ inputs.client-key-file-path }}
+    TOTAL_THRESHOLD: ${{ inputs.total-threshold }}
+    CRITICAL_THRESHOLD: ${{ inputs.critical-threshold }}
+    HIGH_THRESHOLD: ${{ inputs.high-threshold }}
+    MEDIUM_THRESHOLD: ${{ inputs.medium-threshold }}
+    LOW_THRESHOLD: ${{ inputs.low-threshold }}
+    INFO_THRESHOLD: ${{ inputs.info-threshold }}
+    
+branding:
+  icon: 'shield'
+  color: 'orange'
